@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Currency Converter
+</title>
+<style type="text/css">
+#box 
+	{
+		width: 300px;
+		height: 150px;
+		margin: 0px auto;
+		border: 2 solid black;
+	}
+	h2{
+		text-align: center;;
+	}
+	table
+	{
+		margin: 0px auto
+	}
+</style>
+<script type="text/javascript">
+	function convertCurrency()
+	{
+
+				var from = document.getElementById("from").value;
+				var to = document.getElementById("to").value;
+				var amt=document.getElementById("fromAmount").value;
+				if(!isNaN(amt))
+				{
+					var xmlhttp= new XMLHttpRequest();
+					var url = "http://data.fixer.io/api/latest?access_key=f6011a9c339b48e0a99765f66acf07a1&symbols=" + from + "," + to;
+					xmlhttp.open("GET", url , true);
+					xmlhttp.send();
+					xmlhttp.onreadystatechange = function()
+					{
+						if(xmlhttp.readyState == 4 && xmlhttp.status ==200)
+						{
+							var result =xmlhttp.responseText;
+							var jsResult = JSON.parse(result);
+							var oneunit=jsResult.rates[to]/jsResult.rates[from];
+							document.getElementById("toAmount").value=(oneunit * amt).toFixed(2);
+							console.log(xmlhttp);
+							
+						}
+						
+
+					}
+				}
+				else
+				{
+					alert("Enter a valid input");
+				}
+
+	}
+	</script>
+</head>
+<body onload="convertCurrency()"> 
+	<div id="box">
+		<h2>Currency Converter</h2>
+		<table>
+			<tr>
+				<td><input type="text" id="fromAmount" size="15" value="1" onkeyup="convertCurrency();" /></td>
+			
+			<td>
+				<select id="from" onchange="convertCurrency()">
+					<option value="AUD">Australian Dollar (AUD)</option>
+					<option value="BNG">Bulgarian Lev (BNG)</option>
+					<option value="USD" selected>US Dollar	USD</option>
+					<option value="EUR">Euro	EUR</option>
+					<option value="AOA">Angolan Kwanza	AOA</option>
+					<option value="XCD">East Caribbean Dollar	XCD</option>
+					<option value="XOF">CFA Franc BCEAO	XOF</option>
+					<option value="BRL">Brazilian Real	BRL</option>
+					<option value="BND">Brunei Dollar	BND</option>
+					<option value="BMD">Bermudian Dollar	BMD</option>
+					<option value="BIF">Burundi Franc	BIF</option>
+					<option value="CLP">Chilean Peso	CLP</option>
+					<option value="CNY">Yuan Renminbi	CNY</option>
+					<option value="NZD">New Zealand Dollar	NZD</option>
+					<option value="EGP">Egyptian Pound	EGP</option>
+					<option value="GBP">Pound Sterling	GBP</option>
+					<option value="ISK">Iceland Krona	ISK</option>
+					<option value="INR">Indian Rupee	INR</option>
+					<option value="JMD">Jamaican Dollar	JMD</option>
+					<option value="JPY">Japanese Yen	JPY</option>
+					<option value="JOD">Jordanian Dinar	JOD</option>
+					<option value="KWD">Kuwaiti Dinar	KWD</option>
+					<option value="LBP">Lebanese Pound	LBP</option>
+					<option value="LRD">Liberian Dollar	LRD</option>
+					<option value="CHF">Swiss Franc	CHF</option>
+					<option value="MXN">Mexican Nuevo Peso	MXN</option>
+					<option value="PHP">Philippine Peso	PHP</option>
+					<option value="NZD">New Zealand Dollar	NZD</option>
+					<option value="SAR">Saudi Riyal	SAR</option>
+					<option value="TRY">Turkish Lira	TRY</option>
+					<option value="VEF">Venezuelan Bolivar	VEF</option>
+					<option value="NGN">Nigerian Naira	NGN</option>
+					<option value="ZAR">South African Rand	ZAR</option>
+					<option value="SGD">Singapore Dollar	SGD</option>
+					<option value="QAR">Qatari Rial	QAR</option>
+					<option value="PLN">Polish Zloty	PLN</option>
+					<option value="KRW">Korean Won	KRW</option>					
+				</select>
+			</td>
+		</tr>
+		<tr>
+				<td><input type="text" id="toAmount" size="15" disabled /></td>
+			
+			<td>
+				<select id="to" onchange="convertCurrency()">
+					<option value="AUD">Australian Dollar (AUD)</option>
+					<option value="BNG">Bulgarian Lev (BNG)</option>
+					<option value="USD">US Dollar	USD</option>
+					<option value="EUR">Euro	EUR</option>
+					<option value="AOA">Angolan Kwanza	AOA</option>
+					<option value="XCD">East Caribbean Dollar	XCD</option>
+					<option value="XOF">CFA Franc BCEAO	XOF</option>
+					<option value="BRL">Brazilian Real	BRL</option>
+					<option value="BND">Brunei Dollar	BND</option>
+					<option value="BMD">Bermudian Dollar	BMD</option>
+					<option value="BIF">Burundi Franc	BIF</option>
+					<option value="CLP">Chilean Peso	CLP</option>
+					<option value="CNY">Yuan Renminbi	CNY</option>
+					<option value="NZD">New Zealand Dollar	NZD</option>
+					<option value="EGP">Egyptian Pound	EGP</option>
+					<option value="GBP">Pound Sterling	GBP</option>
+					<option value="ISK">Iceland Krona	ISK</option>
+					<option value="INR">Indian Rupee	INR</option>
+					<option value="JMD">Jamaican Dollar	JMD</option>
+					<option value="JPY">Japanese Yen	JPY</option>
+					<option value="JOD">Jordanian Dinar	JOD</option>
+					<option value="KWD">Kuwaiti Dinar	KWD</option>
+					<option value="LBP">Lebanese Pound	LBP</option>
+					<option value="LRD">Liberian Dollar	LRD</option>
+					<option value="CHF">Swiss Franc	CHF</option>
+					<option value="MXN">Mexican Nuevo Peso	MXN</option>
+					<option value="PHP">Philippine Peso	PHP</option>
+					<option value="NZD">New Zealand Dollar	NZD</option>
+					<option value="SAR">Saudi Riyal	SAR</option>
+					<option value="TRY">Turkish Lira	TRY</option>
+					<option value="VEF">Venezuelan Bolivar	VEF</option>
+					<option value="NGN" selected>Nigerian Naira	NGN</option>
+					<option value="ZAR">South African Rand	ZAR</option>
+					<option value="SGD">Singapore Dollar	SGD</option>
+					<option value="QAR">Qatari Rial	QAR</option>
+					<option value="PLN">Polish Zloty	PLN</option>
+					<option value="KRW">Korean Won	KRW</option>
+
+					
+				</select>
+			</td>
+		</tr>
+		</table>
+	</div>
+</body>
+</html>
+
+
+
